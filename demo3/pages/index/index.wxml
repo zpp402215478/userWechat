@@ -1,0 +1,43 @@
+<!--index.wxml-->
+
+<view class="container" >
+  <scroll-view scroll-y="{{true}}"  class="page-body" bindscrolltolower="loadMore" lower-threshold="50">
+   
+    <view class="swiper">
+        <swiper indicator-dots="{{indicatorDots}}" vertical="{{vertical}}"
+                autoplay="{{autoplay}}" interval="{{interval}}" duration="{{duration}}">
+            <block wx:for-items="{{banner_url}}" wx:key="item.id">
+                <swiper-item>
+                  <block wx:if="{{item}}">
+                    <image src="{{item}}"  mode="aspectFill"/>
+                  </block>
+                  <block wx:else>
+                    <image src="../../images/default_pic.png" mode="aspectFill"></image>
+                  </block>
+                </swiper-item>
+            </block>
+        </swiper>
+    </view>
+    <!--nav-->
+       
+        <view class="nav_section">
+            <block wx:for="{{restaurantList}}"  wx:for-item="item" >
+              <view bindtap="goRestaurant" data-aid="{{item.id}}">
+               {{item.name}}
+                <image src="{{item.logo}}" mode="aspectFill"></image>
+              </view>        
+            </block>
+        </view>
+  
+  <block wx:if="{{showMore}}">
+      <view class="page-loading">
+        <text>正在玩命加载中...</text>
+      </view>
+    </block>
+    <block wx:else>
+      <view class="page-loading">
+        <text>没有更多内容了</text>
+      </view>
+    </block>
+  </scroll-view>
+</view>

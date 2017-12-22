@@ -1,0 +1,72 @@
+
+  <view class="mod-list">
+    <view  class="left">
+      <view><image src="{{list.logo}}" mode="aspectFill"></image></view>
+    </view> 
+    <view class='right'>
+      <view>{{list.name}}</view>
+      <view>起步价{{list.startprice}}元|配送费{{list.deliverprice}}元</view> 
+      <view>预计{{list.waittime}}小时后送达</view> 
+    </view>
+  </view>
+  <view>Tel:{{list.telphone}}|营业时间:{{list.startdate}}--{{list.enddate}}</view>
+
+
+
+
+<view class="mod-list">
+  <view class="left">
+      <block wx:for="{{list.foodtypeList}}" wx:for-item="item">
+      <view  bindtap="changemenu" data-text="{{item.name}}">{{item.name}}</view>
+      </block>
+  </view>
+
+
+  <view class='right mod-list-content' >
+    <block wx:for="{{list.foodtypeList}}" wx:for-item="item">
+           <view hidden="{{caidan == item.name ? false : true}}"> 
+        <block wx:for="{{item.menulist}}" wx:for-item="menu">
+            <view>
+              <image src="{{menu.logo}}" mode="aspectFill"></image>
+                <view>菜名{{menu.name}}</view>
+                <view>价钱{{menu.price}}</view>
+                <view class="addCart" bindtap="tapAddCart" data-price="{{menu.price}}" data-name="{{menu.name}}" data-id="{{menu.id}}">
+						      <image src="/images/plus.png"></image>
+					      </view>
+            </view>
+         </block>
+      </view>
+    </block>
+  </view>
+</view>
+
+
+<view class="cart-detail" hidden="{{!showCartDetail||!cart.count}}">
+		<view class="mask" bindtap="hideCartDetail"></view>
+      <view class="list">
+        <view class="item" wx:for="{{cart.list}}" wx:for-index="id" wx:for-item="num" wx:key="id">
+          <view class="name ellipsis">{{cart.priceAndName["name"+id]}}</view>
+          <view class="total">￥{{cart.priceAndName[id]*cart.list[id]}}</view>
+          <view class="reduce" data-id="{{id}}" data-price="{{cart.priceAndName[id]}}" 
+          data-name="{{cart.priceAndName['name'+id]}}" bindtap="tapReduceCart">-</view>
+          <view class="num">{{num}}</view>
+          <view class="add" data-id="{{id}}" data-price="{{cart.priceAndName[id]}}" 
+          data-name="{{cart.priceAndName['name'+id]}}" bindtap="tapAddCart">+</view>
+        </view>
+      </view>
+	</view>
+
+
+  <view class="cart">
+		<view class="data" bindtap="showCartDetail">
+			<view class="icon">
+				<image src="/images/cart.png"></image>
+				<view class="count">{{cart.count}}</view>
+			</view>
+			<view class="total">￥{{cart.total}}</view>
+		</view>
+		<form bindsubmit="submit" report-submit="true">
+			<button class="yellow {{cart.count?'':'disabled'}}" formType="submit" disabled="{{!cart.count}}">去结算</button>
+		</form>
+	</view>
+
