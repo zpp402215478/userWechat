@@ -1,5 +1,4 @@
 <!--index.wxml-->
-
 <view class="container" >
   <scroll-view scroll-y="{{true}}"  class="page-body" bindscrolltolower="loadMore" lower-threshold="50">
    

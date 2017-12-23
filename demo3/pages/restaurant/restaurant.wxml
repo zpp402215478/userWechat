@@ -1,5 +1,4 @@
-
-  <view class="mod-list">
+<view class="mod-list">
     <view  class="left">
       <view><image src="{{list.logo}}" mode="aspectFill"></image></view>
     </view> 

@@ -1,4 +1,4 @@
-<form bindsubmit="submit">
+<form>
   <view  class="mod-list">
       <view>昵称:</view>
       <view>
@@ -13,15 +13,12 @@
       </view>
  </view>
 
+<view>菜名 *数量 价格</view>
 
-<view wx:for="{{checkFood}}" wx:for-index="id" wx:key="id">
-<view>菜名:{{checkPriceAndName["name"+id]}} *  {{checkFood[id]}}  数量    {{checkPriceAndName[id]}}  价格</view>
-</view>
-
-<view>配送费{{deliverprice}}</view>
+<view>配送费</view>
 
 <input name="remark" type="text" placeholder="特殊要求" />
-<view>共计:{{checkMoney}}</view>
+<view>共计</view>
 	<button formType="submit">确定下单</button>
 
 </form>
